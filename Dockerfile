@@ -6,3 +6,9 @@ ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get update && apt install -y python-cherrypy3 python-genshi p7zip gdal-bin mapserver-bin wget git && apt-get clean 
 
 RUN mkdir /opt/mapgen && git clone https://github.com/XCSoar/mapgen.git /opt/mapgen/
+
+# Volume for builds
+VOLUME ['/opt/maps']
+
+# Generate maps
+CMD cd /opt/maps/ && /opt/mapgen/bin/generate-maps
