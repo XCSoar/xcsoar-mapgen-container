@@ -7,7 +7,7 @@ RUN apt-get update && apt install --no-install-recommends -y python-cherrypy3 py
 
 RUN apt install --no-install-recommends -y ca-certificates 
 
-RUN mkdir -p /opt/{maps|mapgen} && git clone https://github.com/XCSoar/mapgen.git /opt/mapgen/
+RUN mkdir -p /opt/maps && mkdir -p /opt/mapgen/ && git clone https://github.com/XCSoar/mapgen.git /opt/mapgen/
 
 # Volume for builds
 VOLUME ['/opt/maps']
