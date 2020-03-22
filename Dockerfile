@@ -12,5 +12,8 @@ RUN mkdir -p /opt/maps && mkdir -p /opt/mapgen/ && git clone https://github.com/
 # Volume for builds
 VOLUME ['/opt/maps']
 
+# Volume for data caching
+VOLUME ['/opt/mapgen/data']
+
 # Generate maps
 CMD cd /opt/maps/ && /opt/mapgen/bin/generate-maps
