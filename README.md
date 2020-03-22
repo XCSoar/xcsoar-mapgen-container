@@ -1,0 +1,1 @@
+# xcsoar-mapgen-worker-docker
