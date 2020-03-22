@@ -3,9 +3,7 @@
 FROM debian:buster-backports
 ENV DEBIAN_FRONTEND=noninteractive
 
-RUN apt-get update && apt install --no-install-recommends -y python-cherrypy3 python-genshi p7zip gdal-bin mapserver-bin wget git && apt-get clean 
-
-RUN apt install --no-install-recommends -y ca-certificates 
+RUN apt-get update && apt install --no-install-recommends -y python-cherrypy3 python-genshi p7zip gdal-bin mapserver-bin wget ca-certificates git && apt-get clean 
 
 RUN mkdir -p /opt/maps && mkdir -p /opt/mapgen/ && git clone https://github.com/XCSoar/mapgen.git /opt/mapgen/
 
