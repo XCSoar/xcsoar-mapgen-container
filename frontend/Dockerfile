@@ -3,10 +3,12 @@ FROM folken/xcsoar-base
 
 # Deploy Mapgen
 RUN apt-get update && apt install $APT_OPTS python-minimal python-cherrypy3 python-genshi git && apt-get clean 
-RUN git clone https://github.com/XCSoar/mapgen.git /opt/mapgen/
+
+# Checkout 2020 branch of mapgen
+RUN git clone https://github.com/XCSoar/mapgen.git -b mapgen-2020 /opt/mapgen
 
 ## Volume for jobs used by mapgen-worker
-VOLUME ['/opt/mapgen/jobs']
+VOLUME /opt/mapgen/jobs
 
 # Nginx for reverse proxy
 RUN apt-get $APT_OPTS install nginx && apt-get clean

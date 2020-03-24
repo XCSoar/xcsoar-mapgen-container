@@ -1,0 +1,17 @@
+version: '3'
+services:
+  mapgen-frontend:
+    build: frontend/.
+    ports: 
+      - 80:9090
+    volumes:
+      - mapgen-jobs:/opt/mapgen/jobs
+  mapgen-worker:
+    build: worker/.
+    volumes:
+      - mapgen-jobs:/opt/mapgen/jobs
+      - mapgen-data:/opt/mapgen/data
+
+volumes:
+  mapgen-data:
+  mapgen-jobs:
