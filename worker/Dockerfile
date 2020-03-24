@@ -2,15 +2,15 @@
 
 FROM folken/xcsoar-base
 
-RUN apt-get update && apt install --no-install-recommends -y python-minimal p7zip gdal-bin mapserver-bin wget git && apt-get clean 
+RUN apt-get update && apt install --no-install-recommends -y python-minimal python-jsonschema p7zip gdal-bin mapserver-bin wget git && apt-get clean 
 
-RUN mkdir -p /opt/maps && mkdir -p /opt/mapgen/ && git clone https://github.com/XCSoar/mapgen.git /opt/mapgen/
-
-# Volume for builds
-VOLUME ['/opt/maps']
+RUN git clone https://github.com/XCSoar/mapgen.git /opt/mapgen/
 
 # Volume for data caching
 VOLUME ['/opt/mapgen/data']
 
-# Generate maps
-CMD cd /opt/maps/ && /opt/mapgen/bin/generate-maps
+# Volume for jobs
+VOLUME ['/opt/mapgen/jobs']
+
+# worker process
+CMD /opt/mapgen/bin/mapgen-worker
