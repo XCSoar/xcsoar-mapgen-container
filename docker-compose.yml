@@ -3,7 +3,7 @@ services:
   mapgen-frontend:
     build: frontend/.
     ports: 
-      - 80:9090
+      - "9090:9090"
     volumes:
       - mapgen-jobs:/opt/mapgen/jobs
   mapgen-worker:
