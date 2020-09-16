@@ -1,15 +1,16 @@
 # Creates a mapgen-worker instance for building maps
 FROM folken/xcsoar-base
-ENV GITURL=https://github.com/XCSoar/mapgen.git
-ENV GITBRANCH=master
-ENV APT_OPTS="--install-no-recommends -y"
-ENV MAPFRNT_PKG=python-minimal python-cherrypy3 python-genshi 
+ARG GITURL=https://github.com/XCSoar/mapgen.git
+ARG GITBRANCH=master
+ENV APT_OPTS="-y"
+ENV MAPFRNT_PKG="python-minimal python-cherrypy3 python-genshi"
+ENV DEBIAN_FRONTEND=noninteractive
 
 # Deploy Mapgen
-RUN apt-get update && apt install $APT_OPTS $MAPFRNT_PKG && apt-get clean 
+RUN apt-get update && apt install -y $MAPFRNT_PKG && apt-get clean 
 
 # use git during install only smaller size
-RUN apt-get install $APT_OPTS git && git clone $GITURL -b $GITBRANCH /opt/mapgen/ && apt-get -y purge git && apt-get -y autoremove && apt-get clean
+RUN apt-get install -y git && git clone $GITURL -b $GITBRANCH /opt/mapgen/ && apt-get -y purge git && apt-get -y autoremove && apt-get clean
 
 ## Volume for jobs used by mapgen-worker
 VOLUME /opt/mapgen/jobs

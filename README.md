@@ -28,7 +28,6 @@ The Following build variables can be set during build (optional):
 
  1. GITURL - The git url where the mapgen sources are from (https://github.com/xcsoar/mapgen/mapgen.git)
  1. GITBRANCH - The branch where to pull from (default:master)
- 1. NGINXPORT - The port you wish to expose the service on (9090)
 
 ### Building
 in the current directory: 
@@ -39,7 +38,7 @@ docker-compose build
 or with options: 
 
 ```bash
-docker-compose build --build-arg=GITURL=https://github.com/myuser/mapgen/mapgen.git --build-arg=NGINXPORT=80 --build-arg=GITBRANCH=myfeature
+docker-compose build --build-arg=GITURL=https://github.com/myuser/mapgen/mapgen.git --build-arg=GITBRANCH=myfeature
 ```
 
 ### Starting
