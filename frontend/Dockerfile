@@ -1,11 +1,15 @@
 # Creates a mapgen-worker instance for building maps
 FROM folken/xcsoar-base
+ENV GITURL=https://github.com/XCSoar/mapgen.git
+ENV GITBRANCH=master
+ENV APT_OPTS="--install-no-recommends -y"
+ENV MAPFRNT_PKG=python-minimal python-cherrypy3 python-genshi 
 
 # Deploy Mapgen
-RUN apt-get update && apt install $APT_OPTS python-minimal python-cherrypy3 python-genshi git && apt-get clean 
+RUN apt-get update && apt install $APT_OPTS $MAPFRNT_PKG && apt-get clean 
 
-# Checkout 2020 branch of mapgen
-RUN git clone https://github.com/XCSoar/mapgen.git -b mapgen-2020 /opt/mapgen
+# use git during install only smaller size
+RUN apt-get install $APT_OPTS git && git clone $GITURL -b $GITBRANCH /opt/mapgen/ && apt-get -y purge git && apt-get -y autoremove && apt-get clean
 
 ## Volume for jobs used by mapgen-worker
 VOLUME /opt/mapgen/jobs
@@ -17,7 +21,7 @@ RUN ln -fs /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default
 
 EXPOSE 9090
 
-# Supervisord for running all the processes
+# Supervisord for running two processes inside container
 RUN apt-get $APT_OPTS install supervisor && apt-get clean
 RUN mkdir -p /var/log/supervisor
 COPY files/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
