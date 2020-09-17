@@ -1,5 +1,5 @@
 # Creates a mapgen-worker instance for building maps
-FROM debian:buster-backports
+FROM debian:stretch-backports
 ARG GITURL=https://github.com/XCSoar/mapgen.git
 ARG GITBRANCH=master
 ENV APT_OPTS="-y"
