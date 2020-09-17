@@ -1,3 +1,5 @@
+![Docker](https://github.com/XCSoar/xcsoar-mapgen-container/workflows/Docker/badge.svg)
+
 # XCSoar's Mapgen in containerized Form
 
 This repository contains DockerCompose and Dockerfiles for building a containerized version of mapgen. 
