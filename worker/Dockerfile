@@ -1,8 +1,8 @@
 # Creates a mapgen-worker instance for building maps
-FROM folken/xcsoar-base
+FROM debian:buster-backports
 ARG GITURL=https://github.com/XCSoar/mapgen.git
 ARG GITBRANCH=master
-ENV MAPWRK_PKGS="python-minimal python-jsonschema p7zip gdal-bin mapserver-bin wget"
+ENV MAPWRK_PKGS="ca-certificates python-minimal python-jsonschema p7zip gdal-bin mapserver-bin wget"
 ENV APT_OPTS="-y"
 ENV DEBIAN_FRONTEND=noninteractive
 
