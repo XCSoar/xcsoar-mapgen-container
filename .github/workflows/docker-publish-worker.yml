@@ -28,7 +28,7 @@ jobs:
       - id: string 
         uses: ASzc/change-string-case-action@v1
         with:
-          string: ${{ github.repository }}
+          string: XCSoar
 
       - name: build and push
         uses: docker/build-push-action@v2
