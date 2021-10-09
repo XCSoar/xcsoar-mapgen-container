@@ -40,6 +40,6 @@ jobs:
         with:
           push: ${{ github.event_name == 'push' && github.ref == 'refs/heads/master' }}
           context: ./frontend
-          tags: ghcr.io/xcsoar//mapgen-frontend:latest
+          tags: ghcr.io/xcsoar/mapgen-frontend:latest
           secrets: |
             GIT_AUTH_TOKEN=${{ github.token }}
