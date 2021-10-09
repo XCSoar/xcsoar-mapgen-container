@@ -25,17 +25,13 @@ jobs:
           registry: ghcr.io 
           username: ${{ github.actor }}
           password: ${{ github.token }}
-      - id: string 
-        uses: ASzc/change-string-case-action@v1
-        with:
-          string: XCSoar
 
       - name: build and push
         uses: docker/build-push-action@v2
         with:
           push: ${{ github.event_name == 'push' && github.ref == 'refs/heads/master' }}
           context: ./worker
-          tags: ghcr.io/${{ steps.string.outputs.lowercase }}/mapgen-worker:latest
+          tags: ghcr.io/xcsoar/mapgen-worker:latest
           secrets: |
             GIT_AUTH_TOKEN=${{ github.token }}
 
@@ -44,6 +40,6 @@ jobs:
         with:
           push: ${{ github.event_name == 'push' && github.ref == 'refs/heads/master' }}
           context: ./frontend
-          tags: ghcr.io/${{ steps.string.outputs.lowercase }}/mapgen-frontend:latest
+          tags: ghcr.io/xcsoar//mapgen-frontend:latest
           secrets: |
             GIT_AUTH_TOKEN=${{ github.token }}
