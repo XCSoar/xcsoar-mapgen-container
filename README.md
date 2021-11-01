@@ -1,3 +1,5 @@
+# ARCHIVED: Merged into [mapgen](https://github.com/XCSoar/mapgen)
+
 ![Docker](https://github.com/XCSoar/xcsoar-mapgen-container/workflows/Docker/badge.svg)
 
 # XCSoar's Mapgen in containerized Form
